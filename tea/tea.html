@@ -479,7 +479,9 @@
                 </div>
                 <!--地图-->
                 <div style="min-height: 400px;margin-top:50px;margin-bottom: 70px;background: olive;">
-
+                    <div id="allmap" style="width:80%;height:400px;margin:0 auto;margin-top:50px;margin-bottom: 50px;">
+                                            
+                    </div>
                 </div>
                 <!---->
             </div>
@@ -496,292 +498,208 @@
 <script src="vue.js"></script>
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 <script src='vue-router.js'></script>
-<script>
-    Vue.component('no6-1', {
-        template: '#no6-1'
-    })
-    Vue.component('no5-1-1', {
-        template: '#no5-1-1'
-    })
-    Vue.component('no5-2-1', {
-        template: '#no5-2-1'
-    })
-    Vue.component('no5-3-1', {
-        template: '#no5-3-1'
-    })
-    Vue.component('no2-4-1', {
-        template: '#no2-4-1'
-    })
-    Vue.component('no2-3', {
-        template: '#no2-3',
-        props: ['b_num', 'b_title'],
-        data() {
-            return {
-                num: 0,
-                title: this.b_title
+<script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=ZVxQBFByXwIR6q06AXIHvxOeIRKMkO1F"> </script>
+    <script>
+        Vue.component('no6-1', {
+            template: '#no6-1'
+        })
+        Vue.component('no5-1-1', {
+            template: '#no5-1-1'
+        })
+        Vue.component('no5-2-1', {
+            template: '#no5-2-1'
+        })
+        Vue.component('no5-3-1', {
+            template: '#no5-3-1'
+        })
+        Vue.component('no2-4-1', {
+            template: '#no2-4-1'
+        })
+        Vue.component('no2-3', {
+            template: '#no2-3',
+            props: ['b_num', 'b_title'],
+            data() {
+                return {
+                    num: 0,
+                    title: this.b_title
+                }
+            },
+            mounted() {
+                var time = setInterval(() => {
+                    this.num++
+                    if (this.num >= this.b_num) {
+                        this.num = this.b_num
+                        clearInterval(time)
+                    }
+                }, 1000 / this.b_num)
             }
-        },
-        mounted() {
-            var time = setInterval(() => {
-                this.num++
-                if (this.num >= this.b_num) {
-                    this.num = this.b_num
-                    clearInterval(time)
-                }
-            }, 1000 / this.b_num)
-        }
-    })
-    Vue.component('sy-foot', {
-        template: '#sy-foot',
-    })
-    Vue.component('no-1', {
-        template: '#no-1'
-    })
-    var router = new VueRouter({
-        routes: [
-            {
-                path: '/',
-                component: {
-                    template: '#no1',
-                    data() {
-                        return {
-                            arr1: [
-                                { img: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvODMxNGZmNmYyYjkyNzcxZmY2N2U5NjdlZjQyNjAzZWItNDAweDQwMC5qcGc_p_p100_p_3D.jpg', name: '茉莉花茶', prize: '￥233.0' },
-                                { img: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvMGFkMzdiZDQwOGNjYWMwYzI0Y2JmNzdiMDZiNDg4ODAtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', name: '白牡丹', prize: '￥1.235.0' },
-                                { img: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvOTc4NTUwMDZjYzA1MDQ1OGVkMDFmZjE2N2I4YjNkOTctNDAweDQwMC5qcGc_p_p100_p_3D.jpg', name: '白毫银针', prize: '258.0' },
-                                { img: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvMDMzMjg2Zjc0ZWU4M2ZiM2U5MTllZTgwMDc4MjRjNTAtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', name: '云南普洱茶', prize: '500.0' },
-                                { img: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvMjY1ZjU4NWU5ZmNmYjkxMDBlMzc1YmFkMDQyNTkwMzEtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', name: '湖北老青茶', prize: '400.0' },
-                                { img: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvMjhlYTFmMDQ0Y2NhOWI4NWEzYWZkMzExYzczZTY3MjQtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', name: '霍山黄芽蒙洱银针', prize: '711.0' }
-                            ]
+        })
+        Vue.component('sy-foot', {
+            template: '#sy-foot',
+        })
+        Vue.component('no-1', {
+            template: '#no-1'
+        })
+        var router = new VueRouter({
+            routes: [
+                {
+                    path: '/',
+                    component: {
+                        template: '#no1',
+                        data() {
+                            return {
+                                arr1: [
+                                    { img: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvODMxNGZmNmYyYjkyNzcxZmY2N2U5NjdlZjQyNjAzZWItNDAweDQwMC5qcGc_p_p100_p_3D.jpg', name: '茉莉花茶', prize: '￥233.0' },
+                                    { img: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvMGFkMzdiZDQwOGNjYWMwYzI0Y2JmNzdiMDZiNDg4ODAtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', name: '白牡丹', prize: '￥1.235.0' },
+                                    { img: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvOTc4NTUwMDZjYzA1MDQ1OGVkMDFmZjE2N2I4YjNkOTctNDAweDQwMC5qcGc_p_p100_p_3D.jpg', name: '白毫银针', prize: '258.0' },
+                                    { img: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvMDMzMjg2Zjc0ZWU4M2ZiM2U5MTllZTgwMDc4MjRjNTAtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', name: '云南普洱茶', prize: '500.0' },
+                                    { img: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvMjY1ZjU4NWU5ZmNmYjkxMDBlMzc1YmFkMDQyNTkwMzEtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', name: '湖北老青茶', prize: '400.0' },
+                                    { img: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvMjhlYTFmMDQ0Y2NhOWI4NWEzYWZkMzExYzczZTY3MjQtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', name: '霍山黄芽蒙洱银针', prize: '711.0' }
+                                ]
+                            }
                         }
                     }
-                }
-            },
-            { path: '/no2', component: { template: '#no2' } },
-            {
-                path: '/no3',
-                component: {
-                    template: '#no3',
-                    data() {
-                        return {
-                            index: 0,
-                            arr1: '',
-                            arr: [
-                                {
-                                    title: '全部',
-                                    content: [
-                                        { url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvODMxNGZmNmYyYjkyNzcxZmY2N2U5NjdlZjQyNjAzZWItNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '茉莉花茶', _price: '￥223.0' },
-                                        { url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvMGFkMzdiZDQwOGNjYWMwYzI0Y2JmNzdiMDZiNDg4ODAtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '白牡丹', _price: '￥1235.0' },
-                                        { url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvOTc4NTUwMDZjYzA1MDQ1OGVkMDFmZjE2N2I4YjNkOTctNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '白毫银针', _price: '￥223.0' },
-                                        { url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvMDMzMjg2Zjc0ZWU4M2ZiM2U5MTllZTgwMDc4MjRjNTAtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '云南普洱茶', _price: '￥1235.0' },
-                                        { url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvMjY1ZjU4NWU5ZmNmYjkxMDBlMzc1YmFkMDQyNTkwMzEtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '湖北老青茶', _price: '￥400.0' },
-                                        { url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvMjhlYTFmMDQ0Y2NhOWI4NWEzYWZkMzExYzczZTY3MjQtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '霍山黄芽蒙洱银针', _price: '￥711.0' },
-                                        { url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvNWM4NmNiNjkzOTdjOTM4NWQ4MzI0MDdlZDhhY2EwMmUtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '蒙顶黄芽', _price: '￥450.0' },
-                                        { url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvNWNjYjNmZjU3YWU2YjBmMmRiYWZmOTk2MzljY2E4N2MtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '冻顶乌龙茶', _price: '￥620.0' },
-                                        { url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvNDM1OTBkNjFjM2ViOGU2YzUyYWU3ZmM2N2I3YjQwZGMtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '大红袍', _price: '￥3480.0' },
-                                        { url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvYzNjYmVkZWE4N2JmNzZjOTUyODdjZWUyYWQ4MjgyM2MtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '祁门红茶', _price: '￥568.0' },
-                                        { url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvMjc0Y2E2YTE1Nzc3Mjk4MTFhMDJiOTg0Y2ZlMzliY2MtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '正山小种', _price: '￥952.0' },
-                                        { url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvYTY5N2NjZmUxNzIwNTg1YjcwM2E2OTk2ZWY3N2U4NmEtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '西湖龙井特级', _price: '￥888.0' },
-                                        { url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvYWNkYWZkYWVmNGVlM2NiNmJlYTFjNWI5MWE2MzQwOGMtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '洞庭碧螺春', _price: '￥880.0' },]
-                                },
-                                {
-                                    title: '绿茶',
-                                    content: [
-                                        { url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvYTY5N2NjZmUxNzIwNTg1YjcwM2E2OTk2ZWY3N2U4NmEtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '西湖龙井特级', _price: '￥888.0' },
-                                        { url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvYWNkYWZkYWVmNGVlM2NiNmJlYTFjNWI5MWE2MzQwOGMtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '洞庭碧螺春', _price: '￥880.0' },]
-                                },
-                                {
-                                    title: '黄茶',
-                                    content: [{ url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvMjhlYTFmMDQ0Y2NhOWI4NWEzYWZkMzExYzczZTY3MjQtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '霍山黄芽蒙洱银针', _price: '￥711.0' },
-                                    { url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvNWM4NmNiNjkzOTdjOTM4NWQ4MzI0MDdlZDhhY2EwMmUtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '蒙顶黄芽', _price: '￥450.0' },]
-                                },
-                                {
-                                    title: '乌龙茶',
-                                    content: [{ url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvNWNjYjNmZjU3YWU2YjBmMmRiYWZmOTk2MzljY2E4N2MtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '冻顶乌龙茶', _price: '￥620.0' },
-                                    { url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvNDM1OTBkNjFjM2ViOGU2YzUyYWU3ZmM2N2I3YjQwZGMtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '大红袍', _price: '￥3480.0' },]
-                                },
-                                {
-                                    title: '红茶',
-                                    content: [{ url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvYzNjYmVkZWE4N2JmNzZjOTUyODdjZWUyYWQ4MjgyM2MtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '祁门红茶', _price: '￥568.0' },
-                                    { url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvMjc0Y2E2YTE1Nzc3Mjk4MTFhMDJiOTg0Y2ZlMzliY2MtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '正山小种', _price: '￥952.0' },]
-                                },
-                                {
-                                    title: '黑茶',
-                                    content: [{ url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvMDMzMjg2Zjc0ZWU4M2ZiM2U5MTllZTgwMDc4MjRjNTAtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '云南普洱茶', _price: '￥1235.0' },
-                                    { url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvMjY1ZjU4NWU5ZmNmYjkxMDBlMzc1YmFkMDQyNTkwMzEtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '湖北老青茶', _price: '￥400.0' },]
-                                },
-                                {
-                                    title: '白茶',
-                                    content: [{ url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvMGFkMzdiZDQwOGNjYWMwYzI0Y2JmNzdiMDZiNDg4ODAtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '白牡丹', _price: '￥1235.0' },
-                                    { url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvOTc4NTUwMDZjYzA1MDQ1OGVkMDFmZjE2N2I4YjNkOTctNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '白毫银针', _price: '￥223.0' },]
-                                },
-                                {
-                                    title: '花茶',
-                                    content: [{ url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvODMxNGZmNmYyYjkyNzcxZmY2N2U5NjdlZjQyNjAzZWItNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '茉莉花茶', _price: '￥223.0' },]
-                                },]
-                        }
-                    }
-                }
-            },
-            {
-                path: '/no4',
-                component: {
-                    template: '#no4',
-                    data() {
-                        return {
-                            arr2: [
-                                { img: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDUvNWQ3ZTc0ZDI3NTEzM2MxZmZkYTVkZTFmY2FiNGFkZTctMzAweDMwMC5qcGc_p_p100_p_3D.jpg' },
-                                { img: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDUvNzQwMmZhZTFiYWE3OTgxODA4MWYwM2I2N2UwZTU0ZDItMzAweDMwMC5qcGc_p_p100_p_3D.jpg' },
-                                { img: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDUvOWVlYzA0NGVmYmNiZGQwYzE0M2QwYmZhMGY2MjNkMDUtMzAweDMwMC5qcGc_p_p100_p_3D.jpg' },
-                                { img: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDUvOWVlYzA0NGVmYmNiZGQwYzE0M2QwYmZhMGY2MjNkMDUtMzAweDMwMC5qcGc_p_p100_p_3D.jpg' },
-                                { img: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDUvOWVkYTg5ZjIzMWEzOGFjODE5NmJiYmYyOTA5YWEyZjctMzAweDMwMC5qcGc_p_p100_p_3D.jpg' },
-                                { img: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDUvOWVlYzA0NGVmYmNiZGQwYzE0M2QwYmZhMGY2MjNkMDUtMzAweDMwMC5qcGc_p_p100_p_3D.jpg' },
-                                { img: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDUvMTI1ZmM2NTk4YWE0NmFlY2JkOWY1NDAzYzkwYjM3ODctMzAweDMwMC5qcGc_p_p100_p_3D.jpg' },
-                                { img: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDUvMmZlZDQ0NjA2NDI0N2FmZWI4YTk0ZmQ0NGRiMDc5NzktMzAweDMwMC5qcGc_p_p100_p_3D.jpg' },
-
-                            ]
-                        }
-                    }
-                }
-            },
-            {
-                path: '/no5',
-                component: {
-                    template: '#no5'
                 },
-                children: [
-                    { path: '/', component: { template: '#no5-1' } },
-                    { path: 'no2', component: { template: '#no5-2' } },
-                    { path: 'no3', component: { template: '#no5-3' } },
-                ]
+                { path: '/no2', component: { template: '#no2' } },
+                {
+                    path: '/no3',
+                    component: {
+                        template: '#no3',
+                        data() {
+                            return {
+                                index: 0,
+                                arr1: '',
+                                arr: [
+                                    {
+                                        title: '全部',
+                                        content: [
+                                            { url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvODMxNGZmNmYyYjkyNzcxZmY2N2U5NjdlZjQyNjAzZWItNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '茉莉花茶', _price: '￥223.0' },
+                                            { url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvMGFkMzdiZDQwOGNjYWMwYzI0Y2JmNzdiMDZiNDg4ODAtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '白牡丹', _price: '￥1235.0' },
+                                            { url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvOTc4NTUwMDZjYzA1MDQ1OGVkMDFmZjE2N2I4YjNkOTctNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '白毫银针', _price: '￥223.0' },
+                                            { url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvMDMzMjg2Zjc0ZWU4M2ZiM2U5MTllZTgwMDc4MjRjNTAtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '云南普洱茶', _price: '￥1235.0' },
+                                            { url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvMjY1ZjU4NWU5ZmNmYjkxMDBlMzc1YmFkMDQyNTkwMzEtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '湖北老青茶', _price: '￥400.0' },
+                                            { url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvMjhlYTFmMDQ0Y2NhOWI4NWEzYWZkMzExYzczZTY3MjQtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '霍山黄芽蒙洱银针', _price: '￥711.0' },
+                                            { url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvNWM4NmNiNjkzOTdjOTM4NWQ4MzI0MDdlZDhhY2EwMmUtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '蒙顶黄芽', _price: '￥450.0' },
+                                            { url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvNWNjYjNmZjU3YWU2YjBmMmRiYWZmOTk2MzljY2E4N2MtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '冻顶乌龙茶', _price: '￥620.0' },
+                                            { url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvNDM1OTBkNjFjM2ViOGU2YzUyYWU3ZmM2N2I3YjQwZGMtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '大红袍', _price: '￥3480.0' },
+                                            { url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvYzNjYmVkZWE4N2JmNzZjOTUyODdjZWUyYWQ4MjgyM2MtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '祁门红茶', _price: '￥568.0' },
+                                            { url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvMjc0Y2E2YTE1Nzc3Mjk4MTFhMDJiOTg0Y2ZlMzliY2MtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '正山小种', _price: '￥952.0' },
+                                            { url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvYTY5N2NjZmUxNzIwNTg1YjcwM2E2OTk2ZWY3N2U4NmEtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '西湖龙井特级', _price: '￥888.0' },
+                                            { url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvYWNkYWZkYWVmNGVlM2NiNmJlYTFjNWI5MWE2MzQwOGMtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '洞庭碧螺春', _price: '￥880.0' },]
+                                    },
+                                    {
+                                        title: '绿茶',
+                                        content: [
+                                            { url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvYTY5N2NjZmUxNzIwNTg1YjcwM2E2OTk2ZWY3N2U4NmEtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '西湖龙井特级', _price: '￥888.0' },
+                                            { url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvYWNkYWZkYWVmNGVlM2NiNmJlYTFjNWI5MWE2MzQwOGMtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '洞庭碧螺春', _price: '￥880.0' },]
+                                    },
+                                    {
+                                        title: '黄茶',
+                                        content: [{ url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvMjhlYTFmMDQ0Y2NhOWI4NWEzYWZkMzExYzczZTY3MjQtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '霍山黄芽蒙洱银针', _price: '￥711.0' },
+                                        { url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvNWM4NmNiNjkzOTdjOTM4NWQ4MzI0MDdlZDhhY2EwMmUtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '蒙顶黄芽', _price: '￥450.0' },]
+                                    },
+                                    {
+                                        title: '乌龙茶',
+                                        content: [{ url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvNWNjYjNmZjU3YWU2YjBmMmRiYWZmOTk2MzljY2E4N2MtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '冻顶乌龙茶', _price: '￥620.0' },
+                                        { url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvNDM1OTBkNjFjM2ViOGU2YzUyYWU3ZmM2N2I3YjQwZGMtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '大红袍', _price: '￥3480.0' },]
+                                    },
+                                    {
+                                        title: '红茶',
+                                        content: [{ url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvYzNjYmVkZWE4N2JmNzZjOTUyODdjZWUyYWQ4MjgyM2MtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '祁门红茶', _price: '￥568.0' },
+                                        { url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvMjc0Y2E2YTE1Nzc3Mjk4MTFhMDJiOTg0Y2ZlMzliY2MtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '正山小种', _price: '￥952.0' },]
+                                    },
+                                    {
+                                        title: '黑茶',
+                                        content: [{ url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvMDMzMjg2Zjc0ZWU4M2ZiM2U5MTllZTgwMDc4MjRjNTAtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '云南普洱茶', _price: '￥1235.0' },
+                                        { url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvMjY1ZjU4NWU5ZmNmYjkxMDBlMzc1YmFkMDQyNTkwMzEtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '湖北老青茶', _price: '￥400.0' },]
+                                    },
+                                    {
+                                        title: '白茶',
+                                        content: [{ url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvMGFkMzdiZDQwOGNjYWMwYzI0Y2JmNzdiMDZiNDg4ODAtNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '白牡丹', _price: '￥1235.0' },
+                                        { url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvOTc4NTUwMDZjYzA1MDQ1OGVkMDFmZjE2N2I4YjNkOTctNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '白毫银针', _price: '￥223.0' },]
+                                    },
+                                    {
+                                        title: '花茶',
+                                        content: [{ url1: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvODMxNGZmNmYyYjkyNzcxZmY2N2U5NjdlZjQyNjAzZWItNDAweDQwMC5qcGc_p_p100_p_3D.jpg', _title: '茉莉花茶', _price: '￥223.0' },]
+                                    },]
+                            }
+                        }
+                    }
+                },
+                {
+                    path: '/no4',
+                    component: {
+                        template: '#no4',
+                        data() {
+                            return {
+                                arr2: [
+                                    { img: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDUvNWQ3ZTc0ZDI3NTEzM2MxZmZkYTVkZTFmY2FiNGFkZTctMzAweDMwMC5qcGc_p_p100_p_3D.jpg' },
+                                    { img: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDUvNzQwMmZhZTFiYWE3OTgxODA4MWYwM2I2N2UwZTU0ZDItMzAweDMwMC5qcGc_p_p100_p_3D.jpg' },
+                                    { img: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDUvOWVlYzA0NGVmYmNiZGQwYzE0M2QwYmZhMGY2MjNkMDUtMzAweDMwMC5qcGc_p_p100_p_3D.jpg' },
+                                    { img: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDUvOWVlYzA0NGVmYmNiZGQwYzE0M2QwYmZhMGY2MjNkMDUtMzAweDMwMC5qcGc_p_p100_p_3D.jpg' },
+                                    { img: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDUvOWVkYTg5ZjIzMWEzOGFjODE5NmJiYmYyOTA5YWEyZjctMzAweDMwMC5qcGc_p_p100_p_3D.jpg' },
+                                    { img: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDUvOWVlYzA0NGVmYmNiZGQwYzE0M2QwYmZhMGY2MjNkMDUtMzAweDMwMC5qcGc_p_p100_p_3D.jpg' },
+                                    { img: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDUvMTI1ZmM2NTk4YWE0NmFlY2JkOWY1NDAzYzkwYjM3ODctMzAweDMwMC5qcGc_p_p100_p_3D.jpg' },
+                                    { img: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDUvMmZlZDQ0NjA2NDI0N2FmZWI4YTk0ZmQ0NGRiMDc5NzktMzAweDMwMC5qcGc_p_p100_p_3D.jpg' },
+
+                                ]
+                            }
+                        }
+                    }
+                },
+                {
+                    path: '/no5',
+                    component: {
+                        template: '#no5'
+                    },
+                    children: [
+                        { path: '/', component: { template: '#no5-1' } },
+                        { path: 'no2', component: { template: '#no5-2' } },
+                        { path: 'no3', component: { template: '#no5-3' } },
+                    ]
+                },
+                {
+                    path: '/no6', component: {
+                        template: '#no6', mounted() {
+                            var map = new BMap.Map("allmap");
+                            // var point = new BMap.Point(116.331398, 39.897445);北京的经纬度
+                            map.addControl(new BMap.NavigationControl());
+                            map.addControl(new BMap.ScaleControl());
+                            map.addControl(new BMap.OverviewMapControl());
+                            map.addControl(new BMap.MapTypeControl());
+                            map.centerAndZoom('苏州市外河桥', 11);
+                        }
+                    }
+                },
+            ]
+        })
+        new Vue({
+            el: '#box',
+            data: {
+                arr: [
+                    { name: '首页', path: '#/' },
+                    { name: '关于', path: '#/no2' },
+                    { name: '茶叶', path: '#/no3' },
+                    { name: '基地', path: '#/no4' },
+                    { name: '新闻', path: '#/no5' },
+                    { name: '联系', path: '#/no6' },
+                ],
+                num: "#/",
             },
-            { path: '/no6', component: { template: '#no6' } },
-        ]
-    })
-    new Vue({
-        el: '#box',
-        data: {
-            arr: [
-                { name: '首页', path: '#/' },
-                { name: '关于', path: '#/no2' },
-                { name: '茶叶', path: '#/no3' },
-                { name: '基地', path: '#/no4' },
-                { name: '新闻', path: '#/no5' },
-                { name: '联系', path: '#/no6' },
-            ],
-            num: "#/",
-        },
-        methods: {
-            xg(a) {
-                this.num = a.path
-                sessionStorage.path = this.num
-            }
-        },
-        created() {
-            if (sessionStorage.path != '') {
-                this.num = sessionStorage.path
-            }
-        },
-        router
-    })
-</script>
-<script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
-<script type="text/javascript">
-    //创建和初始化地图函数：
-    function initMap() {
-        createMap();//创建地图
-        setMapEvent();//设置地图事件
-        addMapControl();//向地图添加控件
-        addMarker();//向地图中添加marker
-    }
-
-    //创建地图函数：
-    function createMap() {
-        var map = new BMap.Map("dituContent");//在百度地图容器中创建一个地图
-        var point = new BMap.Point(121.480812, 31.225436);//定义一个中心点坐标
-        map.centerAndZoom(point, 12);//设定地图的中心点和坐标并将地图显示在地图容器中
-        window.map = map;//将map变量存储在全局
-    }
-
-    //地图事件设置函数：
-    function setMapEvent() {
-        map.enableDragging();//启用地图拖拽事件，默认启用(可不写)
-        map.enableScrollWheelZoom();//启用地图滚轮放大缩小
-        map.enableDoubleClickZoom();//启用鼠标双击放大，默认启用(可不写)
-        map.enableKeyboard();//启用键盘上下左右键移动地图
-    }
-
-    //地图控件添加函数：
-    function addMapControl() {
-        //向地图中添加缩放控件
-        var ctrl_nav = new BMap.NavigationControl({ anchor: BMAP_ANCHOR_TOP_LEFT, type: BMAP_NAVIGATION_CONTROL_LARGE });
-        map.addControl(ctrl_nav);
-        //向地图中添加缩略图控件
-        var ctrl_ove = new BMap.OverviewMapControl({ anchor: BMAP_ANCHOR_BOTTOM_RIGHT, isOpen: 1 });
-        map.addControl(ctrl_ove);
-        //向地图中添加比例尺控件
-        var ctrl_sca = new BMap.ScaleControl({ anchor: BMAP_ANCHOR_BOTTOM_LEFT });
-        map.addControl(ctrl_sca);
-    }
-
-    //标注点数组
-    var markerArr = [{ title: "上海浦东嘉里酒店", content: "上海浦东花木路1388号", point: "121.483974|31.220989", isOpen: 1, icon: { w: 21, h: 21, l: 0, t: 0, x: 6, lb: 5 } }
-    ];
-    //创建marker
-    function addMarker() {
-        for (var i = 0; i < markerArr.length; i++) {
-            var json = markerArr[i];
-            var p0 = json.point.split("|")[0];
-            var p1 = json.point.split("|")[1];
-            var point = new BMap.Point(p0, p1);
-            var iconImg = createIcon(json.icon);
-            var marker = new BMap.Marker(point, { icon: iconImg });
-            var iw = createInfoWindow(i);
-            var label = new BMap.Label(json.title, { "offset": new BMap.Size(json.icon.lb - json.icon.x + 10, -20) });
-            marker.setLabel(label);
-            map.addOverlay(marker);
-            label.setStyle({
-                borderColor: "#808080",
-                color: "#333",
-                cursor: "pointer"
-            });
-
-            (function () {
-                var index = i;
-                var _iw = createInfoWindow(i);
-                var _marker = marker;
-                _marker.addEventListener("click", function () {
-                    this.openInfoWindow(_iw);
-                });
-                _iw.addEventListener("open", function () {
-                    _marker.getLabel().hide();
-                })
-                _iw.addEventListener("close", function () {
-                    _marker.getLabel().show();
-                })
-                label.addEventListener("click", function () {
-                    _marker.openInfoWindow(_iw);
-                })
-                if (!!json.isOpen) {
-                    label.hide();
-                    _marker.openInfoWindow(_iw);
+            methods: {
+                xg(a) {
+                    this.num = a.path
+                    sessionStorage.path = this.num
                 }
-            })()
-        }
-    }
-    //创建InfoWindow
-    function createInfoWindow(i) {
-        var json = markerArr[i];
-        var iw = new BMap.InfoWindow("<b class='iw_poi_title' title='" + json.title + "'>" + json.title + "</b><div class='iw_poi_content'>" + json.content + "</div>");
-        return iw;
-    }
-    //创建一个Icon
-    function createIcon(json) {
-        var icon = new BMap.Icon("http://app.baidu.com/map/images/us_mk_icon.png", new BMap.Size(json.w, json.h), { imageOffset: new BMap.Size(-json.l, -json.t), infoWindowOffset: new BMap.Size(json.lb + 5, 1), offset: new BMap.Size(json.x, json.h) })
-        return icon;
-    }
+            },
+            created() {
+                if (sessionStorage.path != '') {
+                    this.num = sessionStorage.path
+                }
+            },
+            router
+        })
+    </script>
 
-    initMap();//创建和初始化地图
-</script>
 
 </html>
