@@ -383,7 +383,8 @@
                 <div style="width: 600px;float:left;height:200px;">
                     <p style="font-size: 18px;height:50px;line-height: 50px;">喝茶的好处有哪些 6大好处告诉你</p>
                     <p style="font-size: 13px;color:#999;line-height: 22px;">
-                            中国历史上有很长的饮茶纪录，已经无法确切地查明到底是在什么年代了，但是大致的时代是有说法的。并且也可以找到证据显示，确实在世界上的很多地方饮茶的习惯是从中国传过去的。所以，很多人认为饮茶就是中国人首创...</p>
+                        中国历史上有很长的饮茶纪录，已经无法确切地查明到底是在什么年代了，但是大致的时代是有说法的。并且也可以找到证据显示，确实在世界上的很多地方饮茶的习惯是从中国传过去的。所以，很多人认为饮茶就是中国人首创...
+                    </p>
                     <a style="display: block;margin-top: 50px;color:#519F10">阅读正文<span
                             class="iconfont icon-zuojiantou"></span></a>
                 </div>
@@ -427,7 +428,8 @@
         <div>
             <!-- no5-3 -->
             <div style="min-height: 400px;width:800px;">
-                <no5-3-1 v-for='i in 2'></no5-1-1>
+                <no5-3-1 v-for='i in 2'>
+                    </no5-1-1>
             </div>
         </div>
     </template>
@@ -439,7 +441,7 @@
                 <div style="width: 600px;float:left;height:200px;">
                     <p style="font-size: 18px;height:50px;line-height: 50px;">喝什么茶叶好?春天适合喝什么茶?喝白茶喝什么茶叶好?</p>
                     <p style="font-size: 13px;color:#999;line-height: 22px;">
-                            2017年10月27日，世界卫生组织国际癌症研究机构公布的致癌物清单初步整理参考，茶在3类致癌物清单中。属于对人类致癌性可疑，尚无充分的人体或动物数据的物质类。</p>
+                        2017年10月27日，世界卫生组织国际癌症研究机构公布的致癌物清单初步整理参考，茶在3类致癌物清单中。属于对人类致癌性可疑，尚无充分的人体或动物数据的物质类。</p>
                     <a style="display: block;margin-top: 50px;color:#519F10">阅读正文<span
                             class="iconfont icon-zuojiantou"></span></a>
                 </div>
@@ -464,22 +466,6 @@
                         中国历史上有很长的饮茶纪录，已经无法确切地查明到底是在什么年代了，但是大致的时代是有说法的。并且也可以找到证据显示，确实在世界上的很多地方饮茶的习惯是从中国传过去的。</p>
                     <div style="min-height: 300px;display: flex;padding-top:70px;padding-bottom: 50px;">
                         <!---->
-                        <!-- <div style="flex:1;text-align: center;border-right: solid 1px #cccccc">
-                            <no6-1>
-                                <img style="width: 80px;height:80px;" slot='no6-1'
-                                    src="https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvNmZkOTQ2MGI2MzM1ZjUzNmY1MzY0NTFiYmJhMjA5ZGQtODB4ODAuanBn.jpg">
-                                <p slot='no6-3' style="margin-top: 10px;margin-bottom: 10px;font-size: 20px;">有想</p>
-                                <p slot='no6-2' style="color:#BFBFBF">info@email.com</p>
-                            </no6-1>
-                        </div>
-                        <div style="flex:1;text-align: center;border-right: solid 1px #cccccc">
-                            <no6-1>
-                                <img style="width: 80px;height:80px;" slot='no6-1'
-                                    src="https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvNmZkOTQ2MGI2MzM1ZjUzNmY1MzY0NTFiYmJhMjA5ZGQtODB4ODAuanBn.jpg">
-                                <p slot='no6-3' style="margin-top: 10px;margin-bottom: 10px;font-size: 20px;">手机</p>
-                                <p slot='no6-2' style="color:#BFBFBF">13725415481/010 6888 6888</p>
-                            </no6-1>
-                        </div> -->
                         <div style="flex:1;text-align: center;" v-for='i in 3'>
                             <no6-1>
                                 <img style="width: 80px;height:80px;" slot='no6-1-1'
@@ -493,7 +479,7 @@
                 </div>
                 <!--地图-->
                 <div style="min-height: 400px;margin-top:50px;margin-bottom: 70px;background: olive;">
-                    
+
                 </div>
                 <!---->
             </div>
@@ -511,7 +497,7 @@
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 <script src='vue-router.js'></script>
 <script>
-     Vue.component('no6-1', {
+    Vue.component('no6-1', {
         template: '#no6-1'
     })
     Vue.component('no5-1-1', {
@@ -698,6 +684,104 @@
         },
         router
     })
+</script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
+<script type="text/javascript">
+    //创建和初始化地图函数：
+    function initMap() {
+        createMap();//创建地图
+        setMapEvent();//设置地图事件
+        addMapControl();//向地图添加控件
+        addMarker();//向地图中添加marker
+    }
+
+    //创建地图函数：
+    function createMap() {
+        var map = new BMap.Map("dituContent");//在百度地图容器中创建一个地图
+        var point = new BMap.Point(121.480812, 31.225436);//定义一个中心点坐标
+        map.centerAndZoom(point, 12);//设定地图的中心点和坐标并将地图显示在地图容器中
+        window.map = map;//将map变量存储在全局
+    }
+
+    //地图事件设置函数：
+    function setMapEvent() {
+        map.enableDragging();//启用地图拖拽事件，默认启用(可不写)
+        map.enableScrollWheelZoom();//启用地图滚轮放大缩小
+        map.enableDoubleClickZoom();//启用鼠标双击放大，默认启用(可不写)
+        map.enableKeyboard();//启用键盘上下左右键移动地图
+    }
+
+    //地图控件添加函数：
+    function addMapControl() {
+        //向地图中添加缩放控件
+        var ctrl_nav = new BMap.NavigationControl({ anchor: BMAP_ANCHOR_TOP_LEFT, type: BMAP_NAVIGATION_CONTROL_LARGE });
+        map.addControl(ctrl_nav);
+        //向地图中添加缩略图控件
+        var ctrl_ove = new BMap.OverviewMapControl({ anchor: BMAP_ANCHOR_BOTTOM_RIGHT, isOpen: 1 });
+        map.addControl(ctrl_ove);
+        //向地图中添加比例尺控件
+        var ctrl_sca = new BMap.ScaleControl({ anchor: BMAP_ANCHOR_BOTTOM_LEFT });
+        map.addControl(ctrl_sca);
+    }
+
+    //标注点数组
+    var markerArr = [{ title: "上海浦东嘉里酒店", content: "上海浦东花木路1388号", point: "121.483974|31.220989", isOpen: 1, icon: { w: 21, h: 21, l: 0, t: 0, x: 6, lb: 5 } }
+    ];
+    //创建marker
+    function addMarker() {
+        for (var i = 0; i < markerArr.length; i++) {
+            var json = markerArr[i];
+            var p0 = json.point.split("|")[0];
+            var p1 = json.point.split("|")[1];
+            var point = new BMap.Point(p0, p1);
+            var iconImg = createIcon(json.icon);
+            var marker = new BMap.Marker(point, { icon: iconImg });
+            var iw = createInfoWindow(i);
+            var label = new BMap.Label(json.title, { "offset": new BMap.Size(json.icon.lb - json.icon.x + 10, -20) });
+            marker.setLabel(label);
+            map.addOverlay(marker);
+            label.setStyle({
+                borderColor: "#808080",
+                color: "#333",
+                cursor: "pointer"
+            });
+
+            (function () {
+                var index = i;
+                var _iw = createInfoWindow(i);
+                var _marker = marker;
+                _marker.addEventListener("click", function () {
+                    this.openInfoWindow(_iw);
+                });
+                _iw.addEventListener("open", function () {
+                    _marker.getLabel().hide();
+                })
+                _iw.addEventListener("close", function () {
+                    _marker.getLabel().show();
+                })
+                label.addEventListener("click", function () {
+                    _marker.openInfoWindow(_iw);
+                })
+                if (!!json.isOpen) {
+                    label.hide();
+                    _marker.openInfoWindow(_iw);
+                }
+            })()
+        }
+    }
+    //创建InfoWindow
+    function createInfoWindow(i) {
+        var json = markerArr[i];
+        var iw = new BMap.InfoWindow("<b class='iw_poi_title' title='" + json.title + "'>" + json.title + "</b><div class='iw_poi_content'>" + json.content + "</div>");
+        return iw;
+    }
+    //创建一个Icon
+    function createIcon(json) {
+        var icon = new BMap.Icon("http://app.baidu.com/map/images/us_mk_icon.png", new BMap.Size(json.w, json.h), { imageOffset: new BMap.Size(-json.l, -json.t), infoWindowOffset: new BMap.Size(json.lb + 5, 1), offset: new BMap.Size(json.x, json.h) })
+        return icon;
+    }
+
+    initMap();//创建和初始化地图
 </script>
 
 </html>
